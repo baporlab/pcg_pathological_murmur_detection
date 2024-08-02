@@ -7,7 +7,6 @@ This code is written by Jae-Man Shin.
 
 Reference:
 1. Szegedy, Christian, et al. "Going deeper with convolutions." Proceedings of the IEEE conference on computer vision and pattern recognition. 2015.
-2. Park, Seong-A., et al. "Attention mechanisms for physiological signal deep learning: which attention should we take?." International Conference on Medical Image Computing and Computer-Assisted Intervention. Cham: Springer Nature Switzerland, 2022.
 """
 
 class inception_block(nn.Module):
