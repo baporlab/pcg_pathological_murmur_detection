@@ -44,12 +44,6 @@ class TemporalBlock(nn.Module):
         self.downsample = nn.Conv1d(n_inputs, n_outputs, 1) if n_inputs != n_outputs else None
         self.init_weights()
 
-    def init_weights(self):
-        self.conv1.weight.data.normal_(0, 0.01)
-        self.conv2.weight.data.normal_(0, 0.01)
-        if self.downsample is not None:
-            self.downsample.weight.data.normal_(0, 0.01)
-
     def forward(self, x):
         out = self.net(x)
         res = out + x
