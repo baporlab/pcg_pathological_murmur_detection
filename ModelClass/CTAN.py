@@ -9,6 +9,10 @@ import torch.nn.functional as F
 """
 This code is CTAN.
 This code is written by Jae-Man Shin.
+The code reference is https://github.com/alexmehta/NAC-TCN-TCNs-with-Causal-NA
+
+Reference:
+Mehta, Alexander, and William Yang. "NAC-TCN: Temporal Convolutional Networks with Causal Dilated Neighborhood Attention for Emotion Understanding." Proceedings of the 2023 7th International Conference on Video and Image Processing. 2023.
 """
 
 class Chomp1d(nn.Module):
