@@ -1,3 +1,7 @@
+# The reference of this code is follow.
+# https://github.com/physionetchallenges/python-classifier-2022
+# This code has been modified as tasks of this study.
+
 import os
 import sys
 import joblib

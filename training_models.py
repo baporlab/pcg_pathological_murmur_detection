@@ -2,8 +2,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchsummary
-# from torcheval.metrics.functional import binary_auroc
-# from torcheval.metrics.functional import binary_auroc as auroc
 from load_models import *
 import os
 from tqdm import tqdm
@@ -11,9 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_auc_score
 
-# from TCN import *
-
-def training_models(train, valid, save_path = '/srv/project_code/shinjaeman17/Project_Models/SVV/ABP2SVV_p1481_s100_',
+def training_models(train, valid, save_path = '/model_save_folder/',
                     gpu_num = 2, random_seed = 42, num_epochs = 200, batch_size = 128, learning_rate = 0.001, patience = 50,
                     n_ch = 1, length = 2000,
                     model_name = 'vgg16'):

@@ -8,7 +8,7 @@ from scipy import signal
 import warnings
 warnings.filterwarnings('ignore')
 
-def generate_pair(idx, wave_information): # 1개의 recording과 1개의 murmur label을 매칭
+def generate_pair(idx, wave_information): # matching label recording-murmur label
     wave = []
     label = []
     for i in idx:
@@ -31,6 +31,13 @@ def normalization(wave):
     return normalized_wave
 
 def schmidt_spike_removal(original_signal, fs = 4000):
+    """
+    Reference: Schmidt, Samuel E., et al. "Segmentation of heart sound recordings by a duration-dependent hidden Markov model." Physiological measurement 31.4 (2010): 513.
+    This code comes from the following github address.
+    https://github.com/davidspringer/Springer-Segmentation-Code/tree/master
+    
+    We translated the code written in Matlab code to Python.
+    """
     windowsize = int(np.round(fs/4))
     trailingsamples = len(original_signal) % windowsize
     sampleframes = np.reshape(original_signal[0 : len(original_signal)-trailingsamples], (-1, windowsize) )
@@ -64,9 +71,6 @@ def get_wave_features(wave, Fs = 4000, featuresFs = 2000, low = 25, high = 400):
     except:
         pass
     
-    # filtered = butterworth_low_pass_filter(wave, 2, 800, Fs)
-    # filtered = butterworth_high_pass_filter(filtered, 2, 20, Fs)
-    
     filtered = signal.resample(filtered, n_sample)
     
     filtered = normalization(filtered)
@@ -74,7 +78,6 @@ def get_wave_features(wave, Fs = 4000, featuresFs = 2000, low = 25, high = 400):
     features[:, 0] = filtered
     return features
 
-# 길이 조절 (2초, 3초, 4초 실험)
 def segmentation(x, y, overlap = 2000, sampling_rate = 2000, seconds = 1):
     features = []
     target = []
@@ -84,42 +87,6 @@ def segmentation(x, y, overlap = 2000, sampling_rate = 2000, seconds = 1):
             features.append(get_wave_features(x[i][j: j+(4000*seconds)], featuresFs = sampling_rate))
             target.append(y[i])
     
-    features = np.array(features)
-    target = np.array(target)
-    return features, target
-
-def butterworth_high_pass_filter(original_signal, order, cutoff, sampling_frequency): # high pass filter
-    B_high, A_high = signal.butter(N = order, Wn = 2*cutoff/sampling_frequency, btype = 'high')
-    high_pass_filtered_signal = signal.filtfilt(b = B_high, a = A_high, x = original_signal)
-    return high_pass_filtered_signal
-
-def butterworth_low_pass_filter(original_signal, order, cutoff, sampling_frequency): # low pass filter
-    B_low, A_low = signal.butter(N = order, Wn = 2*cutoff/sampling_frequency, btype = 'low')
-    low_pass_filtered_signal = signal.filtfilt(b = B_low, a = A_low, x = original_signal)
-    return low_pass_filtered_signal
-
-
-##################################
-# preprocessing for external validation
-def generate_pair_external_ver(idx, patinet_wave, outcome): # 1개의 recording과 1개의 murmur label을 매칭
-    wave_list = []
-    label_list = []
-    
-    for i in idx:
-        patient = patinet_wave[i]
-        label_list.append(outcome[i])
-        wave_list.append(patient)
-        
-    label_list = np.array(label_list)
-    return wave_list, label_list
-
-def segmentation_external_ver(x, y, overlap = 1000):
-    features = []
-    target = []
-    for i in range(0, len(x)):
-        for j in range(0, len(x[i]) - 2000, overlap):
-            features.append(get_wave_features(x[i][j: j+2000], Fs = 2000, featuresFs = 2000))
-            target.append(y[i])
     features = np.array(features)
     target = np.array(target)
     return features, target

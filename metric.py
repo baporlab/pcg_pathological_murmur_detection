@@ -11,7 +11,6 @@ def metrics_for_binary_classification(true_value, pred_proba, pos_label = 1, thr
     elif threshold_option == 'fpr_10':
         th_idx = np.where(fpr <= 0.1)[0][-1]
         thresholds = thresholds[th_idx]
-        print(fpr[th_idx])
     else:
         thresholds = threshold_option
     
@@ -25,10 +24,7 @@ def metrics_for_binary_classification(true_value, pred_proba, pos_label = 1, thr
     tn = cm[0][0]
     
     acc = accuracy_score(true_value, pred_value)
-    # bacc = balanced_accuracy_score(true_value, pred_value, sample_weight = np.zeros(len(true_value)) + (true_value*4) + 1 )
     f1 = f1_score(true_value, pred_value, pos_label = pos_label)
-    # Sensitivity = recall_score(true_value, pred_value, pos_label = pos_label)
-    # Specificity = recall_score(true_value, pred_value, pos_label = 1 - pos_label)
     
     Sensitivity = tp / (tp+fn)
     Specificity = tn / (fp+tn)
