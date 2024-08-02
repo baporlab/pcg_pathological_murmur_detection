@@ -75,20 +75,6 @@ class TCN(nn.Module):
         self.block8 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=128, padding=(kernel_size-1) * 128)
         self.block9 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=256, padding=(kernel_size-1) * 256)
         self.block10 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=512, padding=(kernel_size-1) * 512)
-
-#         self.block1 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-#         self.block2 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-#         self.block3 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-#         self.block4 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-#         self.block5 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-        
-#         self.block6 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-#         self.block7 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-#         self.block8 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-#         self.block9 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-#         self.block10 = TemporalBlock(128, 128, kernel_size=3, stride=1, dilation=1, padding=(kernel_size-1) * 1)
-
-        # self.network = nn.Sequential(*layers)
         
         # Last layer for classification or regression.
         self.gmp = nn.AdaptiveMaxPool1d(1)
