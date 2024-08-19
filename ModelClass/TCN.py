@@ -22,32 +22,30 @@ class Chomp1d(nn.Module):
     def forward(self, x):
         return x[:, :, :-self.chomp_size].contiguous()
 
-class TemporalBlock(nn.Module):
+class TCN_Residual_block(nn.Module):
     def __init__(self, n_inputs, n_outputs, kernel_size, stride, dilation, padding):
-        super(TemporalBlock, self).__init__()
-        self.conv1 = weight_norm(nn.Conv1d(n_inputs, n_outputs, kernel_size,
-                                           stride=stride, padding=padding, dilation=dilation))
+        super(TCN_Residual_block, self).__init__()
+        self.Conv1 = weight_norm(nn.Conv1d(n_inputs, n_outputs, kernel_size, stride=stride, padding=padding, dilation=dilation))
         self.chomp1 = Chomp1d(padding)
-        self.elu1 = nn.ELU()
+        self.ELU1 = nn.ELU()
 
-        self.conv2 = weight_norm(nn.Conv1d(n_outputs, n_outputs, kernel_size,
-                                           stride=stride, padding=padding, dilation=dilation))
+        self.Conv2 = weight_norm(nn.Conv1d(n_outputs, n_outputs, kernel_size, stride=stride, padding=padding, dilation=dilation))
         self.chomp2 = Chomp1d(padding)
-        self.elu2 = nn.ELU()
-
-        self.net = nn.Sequential(self.conv1, 
-                                 self.chomp1,
-                                 self.elu1,
-                                 self.conv2,
-                                 self.chomp2,
-                                 self.elu2)
-        self.downsample = nn.Conv1d(n_inputs, n_outputs, 1) if n_inputs != n_outputs else None
+        self.ELU2 = nn.ELU()
         self.init_weights()
 
+    def init_weights(self):
+        self.Conv1.weight.data.normal_(0, 0.01)
+        self.Conv2.weight.data.normal_(0, 0.01)
+
     def forward(self, x):
-        out = self.net(x)
+        out = self.Conv1(x)
+        out = self.chomp1(out)
+        out = self.ELU1(out)
+        out = self.Conv2(out)
+        out = self.chomp2(out)
+        out = self.ELU2(out)
         res = out + x
-        # res = x if self.downsample is None else self.downsample(x)
         return res, out
 
 class TCN(nn.Module):
