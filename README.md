@@ -2,7 +2,7 @@
 
 This repository is implement code for "Temporal Convolutional Neural Network-Based Feature Extraction and Asynchronous Channel Information Fusion Method for Heart Abnormality Detection in Phonocardiograms"
 
-# Implementation
+# Explanation
 The training and validation were performed by sequentially implementing the notebook "Implement_notebook.ipynb". The procedures consist of four steps: 1) loading and splitting the dataset, 2) training the feature extraction model based on temporal convolutional networks, 3) feature extraction, and 4) validation at the record- and patient-level. Since this repository does not contain a dataset, the dataset need to first be downloaded before running the code.
 ## Dataset
 Our study was conducted using two publicly available databases, "Classification of Heart Sound Recordings: The PhysioNet/Computing in Cardiology Challenge 2016" (PNC2016) and "The CirCor DigiScope Phonocardiogram Dataset" (PNC2022).
