@@ -57,7 +57,6 @@ def training_models(train, valid, save_path = '/model_save_folder/',
             inputs = current_x.to(device).float()
             labels = current_y.to(device).float()
 
-            # 파라미터 변화도를 0으로 만들기
             optimizer.zero_grad()
             # forward + backward
             outputs = model(inputs)
@@ -65,18 +64,18 @@ def training_models(train, valid, save_path = '/model_save_folder/',
             loss.backward()
             optimizer.step()
 
-            # loss와 metric 값
+            # loss, metric
             running_loss += loss.item()/len(train_loader)
             # auroc.update([labels, outputs])
             running_metric += roc_auc_score(labels.detach().cpu().numpy(), outputs.detach().cpu().numpy())/len(train_loader)
         train_loss_list.append(running_loss)
         train_metric_list.append(running_metric.item())
-        # Training error 출력
+        # Training error
         print('Epoch: ', str(epoch + 1))
         print('Loss: ', running_loss)
         print('AUROC: ', running_metric)
 
-        # Validation error 출력
+        # Validation error
         model.eval()
         valid_loss = 0.0
         valid_metric = 0.0
@@ -87,7 +86,7 @@ def training_models(train, valid, save_path = '/model_save_folder/',
                 labels = current_y.to(device).float()
                 outputs = model(inputs)
                 eval_loss = loss_function(outputs, labels)
-                # loss와 metric 값
+                # loss, metric
                 valid_loss += eval_loss.item()/len(valid_loader)
                 # auroc.update([labels, outputs])
                 valid_metric += roc_auc_score(labels.detach().cpu().numpy(), outputs.detach().cpu().numpy())/len(valid_loader)
