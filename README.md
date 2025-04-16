@@ -48,11 +48,6 @@ train_loss, train_metric, valid_loss, valid_metric = training_models(train_colle
 ```
 
 
-## Framework
-[Fig. 1.pdf](https://github.com/user-attachments/files/19770973/Fig.1.pdf)
-[Fig. 4.pdf](https://github.com/user-attachments/files/19770979/Fig.4.pdf)
-
-
 
 
 
