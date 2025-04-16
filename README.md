@@ -46,3 +46,15 @@ train_loss, train_metric, valid_loss, valid_metric = training_models(train_colle
                                                                      model_name = 'tcn' # training various model. please select model option of [vgg16, resnet, inception, tcn, ctan, convnext]
                                                                     ) # if train weak model, set batch_size = 128 because of error "Only one class present in y_true"
 ```
+
+
+## Framework
+[Fig. 1.pdf](https://github.com/user-attachments/files/19770973/Fig.1.pdf)
+[Fig. 4.pdf](https://github.com/user-attachments/files/19770979/Fig.4.pdf)
+
+
+
+
+
+
+
