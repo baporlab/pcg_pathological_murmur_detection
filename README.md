@@ -31,7 +31,7 @@ murmurnet_domain1 = np.concatenate(  [mur_list[0], mur_list[1]] ) # total domain
 murmurnet_domain2 = np.concatenate(  [mur_list[0], mur_list[2]] ) # strong murmur domain
 murmurnet_domain3 = np.concatenate(  [mur_list[0], mur_list[3]] ) # weak murmur domain
 murmurnet_domain4 = np.concatenate(  [mur_list[0], ensemble1] ) # random ensemble1 domain (sample size was same to weak domain)
-murmurnet_domain5 = np.concatenate(  [mur_list[0], ensemble2] ) # random ensemble2 domain (sample size was same to strong domain)
+murmurnet_domain5 = np.concatenate(  [mur_list[0], ensemble2] ) # random ensemble2 domain (sample size was same to strong domain)```
 
 To implement Interpretability_analysis.ipynb, you need GradCAM-1D code for PyTorch. We recommend to download the GradCAM code from the following address.
 https://github.com/liguge/1D-Grad-CAM-for-interpretable-intelligent-fault-diagnosis
