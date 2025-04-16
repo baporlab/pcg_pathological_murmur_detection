@@ -4,8 +4,10 @@ This repository is implement code for "Temporal Convolutional Neural Network-Bas
 
 # Explanation
 The training and validation were performed by sequentially implementing the notebook "Implement_notebook.ipynb". The procedures consist of four steps: 1) loading and splitting the dataset, 2) training the feature extraction model based on temporal convolutional networks, 3) feature extraction, and 4) validation at the record- and patient-level. Since this repository does not contain a dataset, the dataset need to first be downloaded before running the code.
+
 ## Dataset
 Our study was conducted using two publicly available databases, "Classification of Heart Sound Recordings: The PhysioNet/Computing in Cardiology Challenge 2016" (PNC2016) and "The CirCor DigiScope Phonocardiogram Dataset" (PNC2022).
+The datasets are publicly available on the PhysioNet repository: https://physionet.org/content/challenge-2016/1.0.0/ and https://physionet.org/content/circor-heart-sound/1.0.3/. 
 
 ## Requirements
 This repository requires the library below to implement our code.
@@ -30,6 +32,9 @@ murmurnet_domain2 = np.concatenate(  [mur_list[0], mur_list[2]] ) # strong murmu
 murmurnet_domain3 = np.concatenate(  [mur_list[0], mur_list[3]] ) # weak murmur domain
 murmurnet_domain4 = np.concatenate(  [mur_list[0], ensemble1] ) # random ensemble1 domain (sample size was same to weak domain)
 murmurnet_domain5 = np.concatenate(  [mur_list[0], ensemble2] ) # random ensemble2 domain (sample size was same to strong domain)
+
+To implement Interpretability_analysis.ipynb, you need GradCAM-1D code for PyTorch. We recommend to download the GradCAM code from the following address.
+https://github.com/liguge/1D-Grad-CAM-for-interpretable-intelligent-fault-diagnosis
 
 # Training domain
 murmurnet_domain = murmurnet_domain1.copy() # Data domain selection
