@@ -48,8 +48,18 @@ train_loss, train_metric, valid_loss, valid_metric = training_models(train_colle
 ```
 
 
+# Citation
 
-
+```
+@article{shin2025temporal,
+  title={Temporal Convolutional Neural Network-Based Feature Extraction and Asynchronous Channel Information Fusion Method for Heart Abnormality Detection in Phonocardiograms},
+  author={Shin, Jae-Man and Park, Seongyong and Shin, Keewon and Seo, Woo-Young and Kim, Hyun-Seok and Kim, Dong-Kyu and Moon, Baehun and Cha, Seul-Gi and Shin, Won-Jung and Kim, Sung-Hoon},
+  journal={Computer Methods and Programs in Biomedicine},
+  pages={108871},
+  year={2025},
+  publisher={Elsevier}
+}
+```
 
 
 
